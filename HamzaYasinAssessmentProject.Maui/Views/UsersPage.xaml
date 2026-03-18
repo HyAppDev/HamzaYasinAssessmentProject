@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:HamzaYasinAssessmentProject.Shared.ViewModels;assembly=HamzaYasinAssessmentProject.Shared"
+             xmlns:converters="clr-namespace:HamzaYasinAssessmentProject.Maui.Converters"
+             x:Class="HamzaYasinAssessmentProject.Maui.Views.UsersPage"
+             Title="Users">
+
+    <ContentPage.Resources>
+        <converters:BoolToStatusConverter x:Key="BoolToStatusConverter"/>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, Auto, Auto, *" Padding="16" RowSpacing="12">
+
+        <!-- Error Banner -->
+        <Border Grid.Row="0"
+            BackgroundColor="#FFEBEE"
+            Stroke="#F44336"
+            StrokeThickness="1"
+            Padding="12"
+            IsVisible="{Binding HasError}">
+            <Grid ColumnDefinitions="*, Auto">
+                <Label Grid.Column="0"
+                   Text="{Binding ErrorMessage}"
+                   TextColor="#F44336"
+                   VerticalOptions="Center"/>
+                <Button Grid.Column="1"
+                    Text="✕"
+                    BackgroundColor="Transparent"
+                    TextColor="#F44336"
+                    Command="{Binding DismissErrorCommand}"/>
+            </Grid>
+        </Border>
+
+        <!-- Filter Toggle -->
+        <HorizontalStackLayout Grid.Row="1" Spacing="12">
+            <Label Text="Show Active Only" VerticalOptions="Center"/>
+            <Switch IsToggled="{Binding ShowActiveOnly}"
+                Toggled="OnFilterToggled"/>
+        </HorizontalStackLayout>
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator Grid.Row="2"
+                       IsRunning="{Binding IsLoading}"
+                       IsVisible="{Binding IsLoading}"
+                       HorizontalOptions="Center"/>
+
+        <!-- Users List -->
+        <CollectionView Grid.Row="3" ItemsSource="{Binding Users}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="LightGray" StrokeThickness="1" Padding="12" Margin="0,4">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <VerticalStackLayout Grid.Column="0">
+                                <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold"/>
+                                <Label Text="{Binding Email}" FontSize="13" TextColor="Gray"/>
+                            </VerticalStackLayout>
+                            <Button Grid.Column="1"
+                                Text="{Binding Active, Converter={StaticResource BoolToStatusConverter}}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:UsersViewModel}}, Path=ToggleUserStatusCommand}"
+                                CommandParameter="{Binding .}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="HamzaYasinAssessmentProject.Maui/HamzaYasinAssessmentProject.Maui.csproj" Id="5f427ab4-bbd3-4a7b-a743-720fca849774">
+    <Deploy Solution="Debug|*" />
+  </Project>
+  <Project Path="HamzaYasinAssessmentProject.Shared/HamzaYasinAssessmentProject.Shared.csproj" />
+  <Project Path="HamzaYasinAssessmentProject/HamzaYasinAssessmentProject.Server.csproj" />
+  <Project Path="TestProject/TestProject.csproj" Id="1b6a1a43-54ff-47b1-bd73-3e5d0723e990" />
+</Solution>

@@ -1,0 +1,9 @@
+@HamzaYasinAssessmentProject_HostAddress = https://localhost:7138
+
+GET {{HamzaYasinAssessmentProject_HostAddress}}/api/users
+Accept: application/json
+
+###
+
+GET {{HamzaYasinAssessmentProject_HostAddress}}/api/users/active
+Accept: application/json
