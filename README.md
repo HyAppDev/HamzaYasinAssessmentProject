@@ -4,6 +4,8 @@ This should run just by opening it up in VS2026 and hitting run. I've got this s
 
 There is a slight deviation in the construction from what was requested here. Specifically, the spec asks for both a .Net MAUI project with a fully implemented MVVM setup. It also asks for testing on the MAUI project, using NUnit. I'ce taken some of the functionality out of the front end MAUI solution and put it into a separate "Shared" solution. 
 
+I tested this using a windows emulator. I have not tested on Android or IOS emulators, but it should work although I can't guarantee that it will. This is mostly due to a lack of RAM on the machine I wrote this on.
+
 
 And this brings us nicely to the request for a request for SOLID architecture. 
 
